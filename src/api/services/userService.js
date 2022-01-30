@@ -14,6 +14,20 @@ async function getUserById(id) {
   }
 }
 
+async function getUserByEmail(email) {
+  try {
+    const result = await SMART_BRAIN.query(
+      `SELECT * FROM users
+       WHERE email=$1;`,
+      [email]
+    );
+
+    return result.rows;
+  } catch (error) {
+    console.error("getUserByEmail: ", error);
+  }
+}
+
 async function createUser(name, email, password) {
   try {
     const result = await SMART_BRAIN.query(
@@ -32,4 +46,4 @@ async function createUser(name, email, password) {
   }
 }
 
-export { getUserById, createUser };
+export { getUserById, createUser, getUserByEmail };

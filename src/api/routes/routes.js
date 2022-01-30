@@ -1,11 +1,15 @@
 import { Router } from "express";
-import { handleRegister } from "../controllers/index.js";
+import {
+  handleRegister,
+  handleGetProfile,
+  handleLogin,
+} from "../controllers/index.js";
 
 const routes = Router();
 
-routes.post("/login", (req, res) => {
-  return console.log("Hello world");
-});
+routes.post("/login", handleLogin);
+
+routes.get("/profile/:id", handleGetProfile);
 
 routes.post("/register", handleRegister);
 
