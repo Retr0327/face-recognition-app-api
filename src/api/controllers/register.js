@@ -3,13 +3,17 @@ import { createUser } from "../services/userService.js";
 
 const handleRegister = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, userEmail, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const createResult = await createUser(name, email, hashedPassword);
-    console.log(createResult);
+    const createResult = await createUser(name, userEmail, hashedPassword);
+    const { id, user_name, email, joined } = createResult[0];
 
-    
+    return res.status(201).json({
+      status: "success",
+      data: { id, name: user_name, email, joined },
+    });
+
   } catch (error) {
     console.error("handleRegister: ", error);
     return res.status(500).json("Internal Server Error");
