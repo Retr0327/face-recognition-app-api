@@ -1,6 +1,6 @@
 import SMART_BRAIN from "../models/smartBrain.js";
 
-async function getUserProfileByID(id) {
+async function getUserById(id) {
   try {
     const result = SMART_BRAIN.query(
       `SELECT * FROM users
@@ -32,4 +32,4 @@ async function createUser(name, email, password) {
   }
 }
 
-export { getUserProfileByID, createUser };
+export { getUserById, createUser };
