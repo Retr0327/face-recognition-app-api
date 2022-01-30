@@ -46,4 +46,20 @@ async function createUser(name, email, password) {
   }
 }
 
-export { getUserById, createUser, getUserByEmail };
+async function updateEntriesById(id) {
+  try {
+    const result = await SMART_BRAIN.query(
+      `UPDATE users
+       SET entries = entries + 1
+       WHERE id=$1
+       RETURNING users.entries
+      `,
+      [id]
+    );
+    return result.rows;
+  } catch (error) {
+    console.error("updateEntriesById: ", error);
+  }
+}
+
+export { getUserById, createUser, getUserByEmail, updateEntriesById };
