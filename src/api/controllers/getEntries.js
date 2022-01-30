@@ -7,7 +7,7 @@ const handleGetEntries = async (req, res) => {
 
     return res
       .status(200)
-      .json({ status: "success", entries: entriesResult[0] });
+      .json({ status: "success", entries: entriesResult[0].entries });
   } catch (error) {
     console.error("handleGetEntries: ", error);
     return res

@@ -14,8 +14,6 @@ const handleApiCall = async (req, res) => {
       req.body.input
     );
 
-    console.log("api", result);
-
     return res.status(200).json({ status: "success", data: result });
   } catch (error) {
     console.error("handleApiCall: ", error);
